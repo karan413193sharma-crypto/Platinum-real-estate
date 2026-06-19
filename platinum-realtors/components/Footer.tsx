@@ -10,14 +10,17 @@ export default function Footer() {
         backgroundImage: `url(${footerBg.src})`,
       }}
     >
+      <div className="footer-top-space"></div>
       <div className="footer-content">
+
+        {/* Col 1 - Logo, Description, Social */}
         <div className="col col-1">
           <div className="logo-wrapper">
             <Image
               src={platinumLogo}
               alt="Platinum Logo"
-              width={200}
-              height={80}
+              width={130}
+              height={65}
               priority
             />
           </div>
@@ -30,22 +33,26 @@ export default function Footer() {
           </p>
 
           <div className="social-icons">
-            <Image
-              src="/instagram-icon.png"
-              alt="Instagram"
-              width={24}
-              height={24}
-            />
-            <Image
-              src="/facebook-icon.png"
-              alt="Facebook"
-              width={24}
-              height={24}
-            />
-            <Image src="/x-icon.png" alt="X" width={24} height={24} />
+            {/* Instagram */}
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ cursor: "pointer" }}>
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none" />
+            </svg>
+
+            {/* Facebook */}
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ cursor: "pointer" }}>
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+
+            {/* X (Twitter) */}
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="white" style={{ cursor: "pointer" }}>
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
           </div>
         </div>
 
+        {/* Col 2 - Quick Links */}
         <div className="col col-2">
           <h3>Quick Links</h3>
           <ul>
@@ -55,6 +62,7 @@ export default function Footer() {
           </ul>
         </div>
 
+        {/* Col 3 - Our Services */}
         <div className="col col-3">
           <h3>Our Services</h3>
           <ul>
@@ -63,20 +71,30 @@ export default function Footer() {
           </ul>
         </div>
 
+        {/* Col 4 - Contact */}
         <div className="col col-4">
           <h3>Contact</h3>
           <ul className="contact-list">
-            <li>
+            <li className="address">
               abc Building, CP-67, Mohali,<br />
               Sahibzada Ajit Singh Nagar,<br />
               Punjab 140306
             </li>
             <li className="contact-item">
-              <span className="contact-icon">✉</span>
+              <span className="contact-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <polyline points="2,4 12,13 22,4" />
+                </svg>
+              </span>
               platinumrealors@gmail.com
             </li>
             <li className="contact-item">
-              <span className="contact-icon">📞</span>
+              <span className="contact-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </span>
               +91**********
             </li>
           </ul>
@@ -86,29 +104,33 @@ export default function Footer() {
       <div className="divider"></div>
 
       <div className="copyright">
-        <p>© 2026 Platinum. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Platinum Realtors. All rights reserved.</p>
       </div>
 
       <style>{`
         .footer {
           position: relative;
           width: 100%;
+          min-height: 350px;
           background-size: cover;
-          background-position: center;
+          background-position: center -120px;
           background-repeat: no-repeat;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 60px 80px 40px;
+          padding: 0 80px 40px;
+          box-sizing: border-box;
+        }
+
+        .footer-top-space {
+          height: 310px;
         }
 
         .footer-content {
           display: flex;
           justify-content: space-between;
-          max-width: 1200px;
-          margin: 0 auto;
+          align-items: flex-start;
+          max-width: 1400px;
           width: 100%;
-          gap: 40px;
+          margin: 0 auto;
+          gap: 20px;
         }
 
         .col {
@@ -116,144 +138,204 @@ export default function Footer() {
           flex-direction: column;
         }
 
+        /* Col 1 — distinct identity block */
         .col-1 {
-          flex: 0 0 280px;
+          flex: 0 0 240px;
         }
 
-        .col-2,
+        /* Col 2, 3 — nav/service links */
+        .col-2 {
+          flex: 0 0 150px;
+          padding-top: 4px;
+        }
+
         .col-3 {
-          flex: 0 0 160px;
+          flex: 0 0 210px;
+          padding-top: 4px;
         }
 
+        /* Col 4 — contact */
         .col-4 {
-          flex: 0 0 220px;
+          flex: 0 0 260px;
+          padding-top: 4px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
 
+        /* Logo sits at top of col-1 */
         .logo-wrapper {
-          margin-bottom: 20px;
+          margin-bottom: 18px;
         }
 
         .description {
-          font-size: 14px;
-          line-height: 1.6;
-          color: #fff;
-          margin: 0 0 20px 0;
-          font-weight: 300;
-          opacity: 0.9;
+          color: #ffffff;
+          font-size: 13px;
+          line-height: 1.65;
+          margin: 0 0 18px;
+          max-width: 240px;
         }
 
         .social-icons {
           display: flex;
-          gap: 15px;
-          margin-top: 5px;
+          gap: 14px;
+          align-items: center;
         }
 
-        .social-icons img {
-          cursor: pointer;
-          filter: brightness(0) invert(1);
-          opacity: 0.8;
-          transition: opacity 0.3s;
+        .social-icons svg {
+          transition: opacity 0.25s ease;
         }
 
-        .social-icons img:hover {
-          opacity: 1;
+        .social-icons svg:hover {
+          opacity: 0.65;
         }
 
+        /* Red headings */
         .col h3 {
-          color: #c0392b;
-          font-size: 18px;
-          font-weight: 600;
-          margin: 0 0 20px 0;
-          letter-spacing: 0.5px;
+          color: #e53935;
+          font-size: 20px;
+          font-weight: 700;
+          margin: 0 0 22px;
+          letter-spacing: 0.01em;
         }
 
+        /* List reset */
         .col ul {
           list-style: none;
           padding: 0;
           margin: 0;
         }
 
-        .col ul li {
-          color: #fff;
-          font-size: 14px;
-          font-weight: 300;
-          margin-bottom: 12px;
-          opacity: 0.8;
+        /* Quick links & services items */
+        .col-2 ul li,
+        .col-3 ul li {
+          color: #ffffff;
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.4;
+          margin-bottom: 18px;
           cursor: pointer;
-          transition: opacity 0.3s;
+          transition: color 0.2s ease;
         }
 
-        .col ul li:hover {
-          opacity: 1;
+        .col-2 ul li:hover,
+        .col-3 ul li:hover {
+          color: #e53935;
+        }
+
+        /* Contact column */
+        .contact-list {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
         }
 
         .contact-list li {
-          line-height: 1.6;
+          color: #ffffff;
+          font-size: 14px;
+          line-height: 1.55;
+          cursor: default;
         }
 
+        /* Address: left-aligned to match heading */
+        .address {
+          text-align: left;
+          margin-bottom: 24px;
+          font-size: 14px;
+          font-weight: 500;
+          width: 100%;
+          display: block;
+        }
+
+        /* Email & phone: icon + text, no extra indent — left-aligned naturally */
         .contact-item {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
+          margin-bottom: 12px;
+          font-size: 14px;
+          width: 100%;
+          padding-left: 0;
         }
 
         .contact-icon {
-          font-size: 14px;
-          opacity: 1;
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
         }
 
         .divider {
           width: 100%;
-          max-width: 1200px;
-          margin: 30px auto 20px;
+          max-width: 1400px;
           height: 1px;
           background: rgba(255, 255, 255, 0.2);
+          margin: 30px auto 0;
         }
 
         .copyright {
-          max-width: 1200px;
+          max-width: 1400px;
           width: 100%;
-          margin: 0 auto;
+          margin: 18px auto 0;
         }
 
         .copyright p {
-          color: #fff;
+          color: rgba(255, 255, 255, 0.6);
           font-size: 13px;
-          font-weight: 300;
-          opacity: 0.7;
           margin: 0;
+          text-align: center;
         }
 
+        /* ── Tablet ── */
         @media (max-width: 1024px) {
           .footer {
-            padding: 60px 40px 40px;
+            padding: 0 40px 40px;
+          }
+
+          .footer-top-space {
+            height: 250px;
           }
 
           .footer-content {
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 36px;
           }
 
           .col-1 {
             flex: 0 0 100%;
           }
 
+          .description {
+            max-width: 100%;
+          }
+
           .col-2,
           .col-3,
           .col-4 {
-            flex: 1 1 calc(33.33% - 30px);
-            min-width: 0;
+            flex: 1 1 180px;
+          }
+
+          .col-4 {
+            align-items: flex-start;
+          }
+
+          .address {
+            text-align: left;
           }
         }
 
+        /* ── Mobile ── */
         @media (max-width: 768px) {
           .footer {
-            padding: 40px 20px 30px;
+            padding: 0 20px 30px;
+          }
+
+          .footer-top-space {
+            height: 150px;
           }
 
           .footer-content {
             flex-direction: column;
-            gap: 30px;
+            gap: 28px;
           }
 
           .col-1,
@@ -261,6 +343,22 @@ export default function Footer() {
           .col-3,
           .col-4 {
             flex: 0 0 100%;
+          }
+
+          .col-4 {
+            align-items: flex-start;
+          }
+
+          .address {
+            text-align: left;
+          }
+
+          .contact-item {
+            padding-left: 0;
+          }
+
+          .description {
+            max-width: 100%;
           }
         }
       `}</style>
