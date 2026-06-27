@@ -1,5 +1,4 @@
 import Image from "next/image";
-import heroBg from "../images/hero-bg.jpg";
 
 export default function HeroSection() {
   return (
@@ -51,7 +50,6 @@ export default function HeroSection() {
           color: rgba(255, 255, 255, 0.9);
         }
 
-        /* ── Search Bar ── */
         .hero-search-bar {
           position: absolute;
           bottom: 28px;
@@ -138,136 +136,48 @@ export default function HeroSection() {
           background: #b5121f;
         }
 
-        /* ── Tablet: 768px – 1024px ── */
         @media (max-width: 1024px) {
-          .hero-inner h1 {
-            font-size: 60px;
-          }
-
-          .hero-inner {
-            padding-bottom: 180px;
-          }
-
-          .hero-search-bar {
-            gap: 10px;
-            width: 92%;
-          }
+          .hero-inner h1 { font-size: 60px; }
+          .hero-inner { padding-bottom: 180px; }
+          .hero-search-bar { gap: 10px; width: 92%; }
         }
 
-        /* ── Small Tablet: 600px – 767px ── */
         @media (max-width: 767px) {
-          .hero {
-            min-height: 640px;
-            height: auto;
-            padding-bottom: 0;
-          }
-
-          .hero-inner {
-            padding: 80px 24px 280px;
-            justify-content: flex-start;
-            padding-top: 100px;
-          }
-
-          .hero-inner h1 {
-            font-size: 42px;
-            line-height: 1.1;
-            margin-bottom: 12px;
-          }
-
-          .hero-inner p {
-            font-size: 14px;
-          }
-
-          .hero-search-bar {
-            bottom: 24px;
-            width: 90%;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: flex-end;
-          }
-
-          .search-group {
-            flex: 1 1 calc(50% - 6px);
-            min-width: 0;
-          }
-
-          .search-find-btn {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 44px;
-            font-size: 15px;
-          }
+          .hero { min-height: 640px; height: auto; padding-bottom: 0; }
+          .hero-inner { padding: 80px 24px 280px; justify-content: flex-start; padding-top: 100px; }
+          .hero-inner h1 { font-size: 42px; line-height: 1.1; margin-bottom: 12px; }
+          .hero-inner p { font-size: 14px; }
+          .hero-search-bar { bottom: 24px; width: 90%; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+          .search-group { flex: 1 1 calc(50% - 6px); min-width: 0; }
+          .search-find-btn { flex: 0 0 100%; width: 100%; height: 44px; font-size: 15px; }
         }
 
-        /* ── Mobile: up to 599px ── */
         @media (max-width: 599px) {
-          .hero {
-            min-height: 580px;
-          }
-
-          .hero-inner {
-            padding: 80px 20px 320px;
-            padding-top: 90px;
-          }
-
-          .hero-inner h1 {
-            font-size: 32px;
-            line-height: 1.15;
-          }
-
-          .hero-inner p {
-            font-size: 13px;
-          }
-
-          .hero-search-bar {
-            bottom: 20px;
-            width: 88%;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 10px;
-          }
-
-          .search-group {
-            flex: none;
-            width: 100%;
-          }
-
-          .search-select-wrap select {
-            min-width: 100%;
-            height: 44px;
-            font-size: 14px;
-          }
-
-          .search-find-btn {
-            width: 100%;
-            height: 46px;
-            font-size: 15px;
-          }
+          .hero { min-height: 580px; }
+          .hero-inner { padding: 80px 20px 320px; padding-top: 90px; }
+          .hero-inner h1 { font-size: 32px; line-height: 1.15; }
+          .hero-inner p { font-size: 13px; }
+          .hero-search-bar { bottom: 20px; width: 88%; flex-direction: column; align-items: stretch; gap: 10px; }
+          .search-group { flex: none; width: 100%; }
+          .search-select-wrap select { min-width: 100%; height: 44px; font-size: 14px; }
+          .search-find-btn { width: 100%; height: 46px; font-size: 15px; }
         }
 
-        /* ── Very small: up to 360px ── */
         @media (max-width: 360px) {
-          .hero-inner h1 {
-            font-size: 26px;
-          }
-
-          .hero-inner {
-            padding-top: 70px;
-          }
+          .hero-inner h1 { font-size: 26px; }
+          .hero-inner { padding-top: 70px; }
         }
       `}</style>
 
       <section className="hero">
         <Image
-          src={heroBg}
+          src="/images/hero-bg.jpg"
           alt="Hero Background"
           priority
           fill
           style={{ objectFit: "cover", objectPosition: "center center" }}
         />
-
         <div className="hero-overlay" />
-
         <div className="hero-inner">
           <h1>
             Elevate Lifestyle<br />
@@ -275,7 +185,6 @@ export default function HeroSection() {
           </h1>
           <p>Explore a wide range of properties</p>
         </div>
-
         <div className="hero-search-bar">
           <div className="search-group">
             <label>Location</label>
@@ -287,7 +196,6 @@ export default function HeroSection() {
               </select>
             </div>
           </div>
-
           <div className="search-group">
             <label>Property</label>
             <div className="search-select-wrap">
@@ -298,7 +206,6 @@ export default function HeroSection() {
               </select>
             </div>
           </div>
-
           <div className="search-group">
             <label>Price Range</label>
             <div className="search-select-wrap">
@@ -309,7 +216,6 @@ export default function HeroSection() {
               </select>
             </div>
           </div>
-
           <button className="search-find-btn">Find Now</button>
         </div>
       </section>
