@@ -20,6 +20,15 @@ const projects = [
     theme: "light",
     bgImage: null,
   },
+  {
+    id: 3,
+    location: "Mohali", // remove this line if you want the "light" theme like project 2
+    name: "Your New Project Name",
+    description: "Replace this with the description for your new project.",
+    images: ["/images/jpeg-optimizer_RSP07397.jpeg", "/images/jpeg-optimizer_RSP07410.jpeg", "/images/com3img3.jpg", "/images/com3img4.jpg"],
+    theme: "dark", // or "light" if you want it to match project 2's white-card style
+     bgImage: "/images/com1-bg.png",// set to null if theme is "light"
+  },
 ];
 
 export default function ComServicePlaces() {
