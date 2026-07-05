@@ -307,13 +307,13 @@ export default function ResServicePlaces() {
       <style>{`
         .rp-section { background: #ffffff; padding: 60px 0 20px; }
         .rp-project { width: 100%; max-width: 1240px; margin: 0 auto 18px; padding: 0 18px; }
-        .rp-location { color: #d71920; font-size: 20px; font-weight: 700; margin-bottom: 24px; font-family: Georgia, serif; }
+        .rp-location { color: #d71920; font-size: 20px; font-weight: 700; margin-bottom: 24px; font-family: Playfair Display; }
         .rp-card { position: relative; height: 500px; overflow: hidden; background-size: cover; background-position: center; background-repeat: no-repeat; }
         .rp-overlay { position: absolute; inset: 0; }
         .rp-card.dark .rp-overlay { background: rgba(0,0,0,.40); }
         .rp-card.red .rp-overlay { background: rgba(0,0,0,.38); }
         .rp-content { position: relative; z-index: 2; width: 100%; height: 100%; padding: 18px 20px 30px; display: flex; flex-direction: column; align-items: center; }
-        .rp-title { color: #fff; font-family: Georgia,"Times New Roman",serif; font-size: 32px; font-weight: 700; margin-top: 6px; margin-bottom: 18px; text-align: center; line-height: 1; }
+        .rp-title { color: #fff; font-family: Playfair Display; font-size: 32px; font-weight: 700; margin-top: 6px; margin-bottom: 18px; text-align: center; line-height: 1; }
         .rp-description { color: #efefef; width: 94%; margin: 0 auto; text-align: left; font-size: 15px; line-height: 1.35; font-weight: 400; margin-bottom: 42px; }
         .rp-slider { width: 100%; display: flex; align-items: center; justify-content: space-between; }
         .rp-arrow { width: 44px; height: 44px; border: none; background: none; color: #e21828; font-size: 42px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: .25s; user-select: none; }

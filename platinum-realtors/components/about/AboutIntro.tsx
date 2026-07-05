@@ -21,8 +21,8 @@ export default function AboutSection() {
         .collage-arc { position: absolute; bottom: 48px; left: -8px; width: 185px; height: 65px; border-bottom: 1px solid rgba(200,169,110,0.32); border-right: 1px solid rgba(200,169,110,0.12); border-radius: 0 0 36px 0; pointer-events: none; }
         .about-panels { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 44px 34px 44px 20px; position: relative; z-index: 2; }
         .about-panel { background: rgba(26,24,24,0.90); border: 1px solid rgba(200,169,110,0.22); padding: 22px 26px; text-align: center; }
-        .about-panel p { margin: 0; font-size: 12.5px; color: #b5b0a6; line-height: 1.85; font-family: Arial, sans-serif; }
-        .panel-brand { font-family: 'Georgia', serif; font-weight: 700; color: #c0392b; font-style: italic; }
+        .about-panel p { margin: 0; font-size: 12.5px; color: #b5b0a6; line-height: 1.85; font-family: Montserrat; }
+        .panel-brand { font-family: Montserrat; font-weight: 700; color: #c0392b; font-style: italic; }
         .panel-big-red { font-family: 'Georgia', serif; font-size: 20px; font-weight: 700; color: #c0392b; font-style: italic; line-height: 1.1; display: inline; }
         .panel-big-red-sm { font-family: 'Georgia', serif; font-size: 17px; font-weight: 700; color: #c0392b; font-style: italic; line-height: 1.15; display: inline; }
         .prism-wrap { position: absolute; bottom: 0; right: 0; width: 175px; height: 290px; pointer-events: none; }

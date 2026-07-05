@@ -64,7 +64,7 @@ export default function AboutSection() {
         .about-image { object-fit: cover; object-position: top center; }
         .red-box { position: absolute; bottom: 0; border-radius: 160px 160px 0 0; left: 150px; width: 260px; height: 450px; border: 2px solid #c8102e; z-index: 1; }
         .content-column { flex: 1; text-align: center; padding-top: 10px; }
-        .content-column h2 { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 42px; font-weight: 700; color: #c8102e; margin: 0 0 36px; }
+        .content-column h2 { font-family: Playfair Display; font-style: italic; font-size: 42px; font-weight: 700; color: #c8102e; margin: 0 0 36px; }
         .content-column p { color: #fff; font-size: 15px; line-height: 1.2; margin: 0 0 28px; font-family: Montserrat; font-weight: 400; }
         .content-column h4 { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 16px; font-weight: 600; color: #c8102e; margin: 20px 0 0; text-decoration: underline; text-underline-offset: 4px; }
         @media (max-width: 1024px) and (min-width: 481px) {

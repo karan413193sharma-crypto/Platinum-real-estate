@@ -127,6 +127,7 @@ export default function Navbar() {
                   <Link href="/residential" className={pathname === "/residential" ? "active" : ""}>Residential</Link>
                 </div>
               </div>
+              <Link href="/blog" className={pathname === "/blog" ? "active" : ""}>Blog</Link>
             </div>
 
             <Link href="/contact" className="navbar-contact-btn">Contact</Link>
@@ -145,6 +146,7 @@ export default function Navbar() {
             <Link href="/commercial" className={pathname === "/commercial" ? "active" : ""} onClick={() => setMenuOpen(false)}>Commercial</Link>
             <Link href="/residential" className={pathname === "/residential" ? "active" : ""} onClick={() => setMenuOpen(false)}>Residential</Link>
           </div>
+          <Link href="/blog" className={pathname === "/blog" ? "active" : ""} onClick={() => setMenuOpen(false)}>Blog</Link>
           <Link href="/contact" className="mobile-contact-btn" onClick={() => setMenuOpen(false)}>Contact</Link>
         </div>
       </div>
