@@ -58,7 +58,6 @@ export default function PostEditor({ initial }: { initial?: Partial<PostFormData
   const [form, setForm] = useState<PostFormData>({ ...EMPTY, ...initial });
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<Date | null>(null);
-  const [generatingSeo, setGeneratingSeo] = useState(false);
   const [tagInput, setTagInput] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingFeatured, setUploadingFeatured] = useState(false);
@@ -134,28 +133,6 @@ export default function PostEditor({ initial }: { initial?: Partial<PostFormData
         // response wasn't JSON, fall back to generic message
       }
       alert(message);
-    }
-  }
-
-  async function handleGenerateSeo() {
-    setGeneratingSeo(true);
-    const res = await fetch("/api/admin/blog/generate-seo", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: form.title, content: form.content }),
-    });
-    setGeneratingSeo(false);
-
-    if (res.ok) {
-      const data = await res.json();
-      setForm((f) => ({
-        ...f,
-        metaTitle: data.metaTitle || f.metaTitle,
-        metaDescription: data.metaDescription || f.metaDescription,
-        tags: data.localKeywords ? [...new Set([...f.tags, ...data.localKeywords])] : f.tags,
-      }));
-    } else {
-      alert("Couldn't generate SEO suggestions. Check your ANTHROPIC_API_KEY.");
     }
   }
 
@@ -389,12 +366,7 @@ export default function PostEditor({ initial }: { initial?: Partial<PostFormData
           </div>
 
           <div className="panel seo-panel">
-            <div className="panel-header">
-              <label>SEO</label>
-              <button className="ai-btn" onClick={handleGenerateSeo} disabled={generatingSeo || !form.title}>
-                {generatingSeo ? "Generating..." : "✦ AI suggest"}
-              </button>
-            </div>
+            <label>SEO</label>
             <input
               value={form.metaTitle}
               onChange={(e) => setForm((f) => ({ ...f, metaTitle: e.target.value }))}
@@ -549,11 +521,6 @@ export default function PostEditor({ initial }: { initial?: Partial<PostFormData
           flex-direction: column;
           gap: 8px;
         }
-        .panel-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
         label {
           font-size: 11px;
           text-transform: uppercase;
@@ -623,19 +590,6 @@ export default function PostEditor({ initial }: { initial?: Partial<PostFormData
           border: none;
           color: var(--text-muted);
           cursor: pointer;
-        }
-        .ai-btn {
-          background: rgba(201, 162, 75, 0.12);
-          border: 1px solid var(--gold);
-          color: var(--gold);
-          font-size: 11px;
-          padding: 4px 8px;
-          border-radius: 20px;
-          cursor: pointer;
-        }
-        .ai-btn:disabled {
-          opacity: 0.5;
-          cursor: default;
         }
       `}</style>
     </div>
