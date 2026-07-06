@@ -10,6 +10,11 @@ body {
   background: #fff;
 }
 
+.contact-top {
+  position: relative;
+  overflow: visible;
+}
+
 .font-playfair {
   font-family: 'Playfair Display', serif;
 }
