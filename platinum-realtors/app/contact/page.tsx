@@ -1,13 +1,10 @@
 "use client";
-
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { useState } from "react";
 
-// Set this to your real image path once the file exists in /public/images,
-// e.g. "/images/contact-hero-bg.jpg". Leave as null and the section will
-// just show the dark gradient with no image, instead of a broken image.
-const heroBg: string | null = null;
+const heroBg: string | null = "/images/contact.png";
 
-// Bedroom photo behind the "Let's begin the conversation" form section.
 const formBg: string | null = "/images/contact-bg.jpeg"; // e.g. "/images/contact-form-bg.jpg"
 
 const faqs = [
@@ -30,6 +27,9 @@ export default function ContactUsPage() {
     phone: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -37,13 +37,35 @@ export default function ContactUsPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${form.firstName} ${form.lastName}`.trim(),
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to submit");
+
+      setStatus("success");
+      setForm({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   return (
     <>
+    <Navbar></Navbar>
       {/* If your Navbar normally renders here (not in layout.tsx),
           uncomment the next line and fix the import path: */}
       {/* <Navbar /> */}
@@ -138,9 +160,24 @@ export default function ContactUsPage() {
                 />
               </div>
 
-              <button type="submit" className="submit-btn">
-                Submit
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Sending..." : "Submit"}
               </button>
+
+              {status === "success" && (
+                <p className="form-status success">
+                  Thanks! We&apos;ll get back to you soon.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="form-status error">
+                  Something went wrong. Please try again.
+                </p>
+              )}
             </form>
           </div>
         </div>
@@ -186,7 +223,7 @@ export default function ContactUsPage() {
       <style jsx>{`
         .contact-hero {
           position: relative;
-          height: 420px;
+          height: 520px;
           background-color: #0b0b0d;
           background-size: cover;
           background-repeat: no-repeat;
@@ -194,7 +231,7 @@ export default function ContactUsPage() {
           display: flex;
           align-items: center;
           overflow: hidden;
-         
+
           padding-top: 110px;
           box-sizing: border-box;
         }
@@ -202,8 +239,6 @@ export default function ContactUsPage() {
         .contact-hero-overlay {
           position: absolute;
           inset: 0;
-        
-          );
         }
 
         .contact-hero-content {
@@ -256,7 +291,6 @@ export default function ContactUsPage() {
         .bc-overlay {
           position: absolute;
           inset: 0;
-        
         }
 
         .bc-content {
@@ -362,6 +396,24 @@ export default function ContactUsPage() {
 
         .submit-btn:hover {
           background: #921313;
+        }
+
+        .submit-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .form-status {
+          margin: 14px 0 0 0;
+          font-size: 13px;
+        }
+
+        .form-status.success {
+          color: #4ade80;
+        }
+
+        .form-status.error {
+          color: #f87171;
         }
 
         @media (max-width: 1024px) and (min-width: 481px) {
@@ -521,6 +573,7 @@ export default function ContactUsPage() {
           }
         }
       `}</style>
+      <Footer></Footer>
     </>
   );
 }
