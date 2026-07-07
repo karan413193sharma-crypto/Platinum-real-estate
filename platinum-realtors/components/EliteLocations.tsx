@@ -8,7 +8,7 @@ const locationData = [
   { id: 3, name: "Dholera",  image: "/images/dholera.jpg" },
 ];
 
-export default function Locations() {
+export default function Locations() { 
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
 
