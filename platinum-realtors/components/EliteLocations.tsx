@@ -12,7 +12,7 @@ export default function Locations() {
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
 
-  const handlePrev = () => {
+  const handlePrev = () => {   
     setStartIndex((prev) => prev === 0 ? locationData.length - visibleCount : prev - 1);
   };
 
