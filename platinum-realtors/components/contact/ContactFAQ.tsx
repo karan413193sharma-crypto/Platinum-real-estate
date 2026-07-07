@@ -33,9 +33,9 @@ const FAQ_ITEMS = [
 function ChevronIcon({ open }: { open: boolean }) {
   return (
     <svg
-      width="10"
-      height="7"
-      viewBox="0 0 10 7"
+      width="11"
+      height="8"
+      viewBox="0 0 11 8"
       fill="none"
       aria-hidden="true"
       style={{
@@ -44,7 +44,7 @@ function ChevronIcon({ open }: { open: boolean }) {
         transition: "transform 0.25s ease",
       }}
     >
-      <path d="M1 1L5 5L9 1" stroke="#D7172A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <polygon points="5.5,8 0,0 11,0" fill="#D7172A" />
     </svg>
   );
 }
@@ -57,7 +57,7 @@ export default function ContactFAQ() {
       <style>{`
         .contact-faq {
           background: #fff;
-          padding: 80px 81px 88px;
+          padding: 64px 24px 88px;
         }
         .contact-faq__grid {
           display: grid;
@@ -78,7 +78,7 @@ export default function ContactFAQ() {
         .contact-faq__underline {
           width: 48px;
           height: 2px;
-          background: #f0b8bc;
+          background: #D7172A;
           margin-bottom: 20px;
         }
         .contact-faq__subtitle {
@@ -177,10 +177,10 @@ export default function ContactFAQ() {
           font-family: 'Inter', sans-serif;
         }
         @media (max-width: 1024px) {
-          .contact-faq { padding: 64px 40px 72px; }
+          .contact-faq { padding: 56px 20px 72px; }
         }
         @media (max-width: 768px) {
-          .contact-faq { padding: 56px 20px 64px; }
+          .contact-faq { padding: 48px 12px 64px; }
           .contact-faq__grid {
             grid-template-columns: 1fr;
             gap: 32px;

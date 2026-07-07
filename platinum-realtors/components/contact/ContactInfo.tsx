@@ -169,8 +169,8 @@ export default function ContactInfo() {
           --arch-w: 232px;
           width: var(--arch-w);
           height: 292px;
-          left: 18%;
-          top: 82px;
+          left: 22%;
+          top: 122px;
           z-index: 2;
           border-radius: calc(var(--arch-w) / 2) calc(var(--arch-w) / 2) 0 0;
         }
