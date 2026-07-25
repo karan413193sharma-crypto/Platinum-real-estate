@@ -8,8 +8,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [propertiesOpen, setPropertiesOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
 
   const isPropertiesActive = pathname === "/commercial" || pathname === "/residential";
+  const isLocationsActive = pathname === "/dholera";
 
   let closeTimer: ReturnType<typeof setTimeout>;
 
@@ -21,6 +23,17 @@ export default function Navbar() {
   const handleMouseLeave = () => {
     closeTimer = setTimeout(() => {
       setPropertiesOpen(false);
+    }, 200);
+  };
+
+  const handleLocationsEnter = () => {
+    clearTimeout(closeTimer);
+    setLocationsOpen(true);
+  };
+
+  const handleLocationsLeave = () => {
+    closeTimer = setTimeout(() => {
+      setLocationsOpen(false);
     }, 200);
   };
 
@@ -127,6 +140,17 @@ export default function Navbar() {
                   <Link href="/residential" className={pathname === "/residential" ? "active" : ""}>Residential</Link>
                 </div>
               </div>
+              <div className="dropdown" onMouseEnter={handleLocationsEnter} onMouseLeave={handleLocationsLeave}>
+                <button className={`dropdown-trigger ${isLocationsActive ? "active" : ""} ${locationsOpen ? "open" : ""}`}>
+                  Project Location
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </button>
+                <div className={`dropdown-menu ${locationsOpen ? "open" : ""}`}>
+                  <Link href="/dholera" className={pathname === "/dholera" ? "active" : ""}>Dholera</Link>
+                </div>
+              </div>
               <Link href="/blog" className={pathname === "/blog" ? "active" : ""}>Blog</Link>
               <Link href="/contact" className={pathname === "/contact" ? "active" : ""}>Contact Us</Link>
             </div>
@@ -146,6 +170,10 @@ export default function Navbar() {
           <div className="mobile-sub">
             <Link href="/commercial" className={pathname === "/commercial" ? "active" : ""} onClick={() => setMenuOpen(false)}>Commercial</Link>
             <Link href="/residential" className={pathname === "/residential" ? "active" : ""} onClick={() => setMenuOpen(false)}>Residential</Link>
+          </div>
+          <span className="mobile-properties-label">Project Location</span>
+          <div className="mobile-sub">
+            <Link href="/dholera" className={pathname === "/dholera" ? "active" : ""} onClick={() => setMenuOpen(false)}>Dholera</Link>
           </div>
           <Link href="/blog" className={pathname === "/blog" ? "active" : ""} onClick={() => setMenuOpen(false)}>Blog</Link>
           <Link href="/contact" className={pathname === "/contact" ? "active" : ""} onClick={() => setMenuOpen(false)}>Contact Us</Link>
