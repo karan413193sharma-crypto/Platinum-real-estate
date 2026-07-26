@@ -5,26 +5,74 @@ export default function OurVision() {
   return (
     <>
       <style>{`
-        .ov-section { background-color: #f5f5f3; padding: 20px 60px 70px; }
-        .ov-heading { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #c8102e; margin: 0 0 30px 0; text-align: center; }
-        .ov-grid { display: flex; gap: 50px; align-items: center; }
-        .ov-img-col { flex: 1; }
-        .ov-img { width: 100%; height: 420px; object-fit: cover; display: block; }
-        .ov-text-col { flex: 1; }
-        .ov-text { font-size: 13px; color: #333; line-height: 1.85; text-align: center; margin: 0; }
-        @media (max-width: 1024px) and (min-width: 481px) {
-          .ov-section { padding: 20px 36px 60px; }
-          .ov-grid { flex-direction: column; gap: 32px; }
-          .ov-img { height: 340px; }
-          .ov-text br { display: none; }
+        .ov-section {
+          background-color: #f5f5f3;
+          padding: 60px 60px 80px;
         }
+        .ov-grid {
+          display: flex;
+          gap: 0px;
+          align-items: center;
+          max-width: 1300px;
+          margin: 0 auto;
+        }
+        .ov-img-col {
+          flex: 1 1 45%;
+          min-width: 0;
+        }
+        .ov-heading {
+          font-family: 'Playfair Display', Georgia, serif;
+          font-size: 32px;
+          font-weight: 700;
+          color: #c8102e;
+          margin: 0 0 28px 0;
+          text-align: center;
+        }
+        .ov-img-wrap {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 3.5;
+          overflow: hidden;
+        }
+        .ov-img {
+          object-fit: cover;
+        }
+        .ov-text-col {
+          flex: 1 1 55%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .ov-text {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          font-size: 15px;
+          color: #43536b;
+          line-height: 1.5;
+          text-align: center;
+          margin: 0;
+          max-width: 560px;
+        }
+
+        @media (max-width: 1024px) {
+          .ov-section { padding: 50px 40px 60px; }
+          .ov-grid { gap: 40px; }
+          .ov-text { font-size: 14px; max-width: 460px; }
+        }
+
+        @media (max-width: 768px) {
+          .ov-section { padding: 40px 24px 50px; }
+          .ov-grid { flex-direction: column; gap: 30px; }
+          .ov-img-col, .ov-text-col { flex: 1 1 100%; width: 100%; }
+          .ov-heading { font-size: 26px; margin-bottom: 20px; }
+          .ov-img-wrap { aspect-ratio: 16 / 10; }
+          .ov-text { max-width: 100%; font-size: 14px; line-height: 1.85; }
+        }
+
         @media (max-width: 480px) {
-          .ov-section { padding: 20px 18px 48px; }
-          .ov-heading { font-size: 24px; margin-bottom: 22px; }
-          .ov-grid { flex-direction: column; gap: 22px; }
-          .ov-img { height: 220px; }
-          .ov-text { font-size: 13px; line-height: 1.75; }
-          .ov-text br { display: none; }
+          .ov-section { padding: 32px 18px 40px; }
+          .ov-heading { font-size: 22px; margin-bottom: 16px; }
+          .ov-img-wrap { aspect-ratio: 4 / 3; }
+          .ov-text { font-size: 13px; line-height: 1.8; }
         }
       `}</style>
 
@@ -32,21 +80,29 @@ export default function OurVision() {
         <div className="ov-grid">
           <div className="ov-img-col">
             <h2 className="ov-heading">Our Vision</h2>
-            <Image src="/images/our-vision.jpg" alt="Vision - corridor" className="ov-img" width={700} height={420} />
+            <div className="ov-img-wrap">
+              <Image
+                src="/images/our-vision.jpg"
+                alt="Vision - corridor"
+                fill
+                className="ov-img"
+                sizes="(max-width: 768px) 100vw, 45vw"
+              />
+            </div>
           </div>
           <div className="ov-text-col">
             <p className="ov-text">
-              Our vision is to become the premier real estate anchor where<br />
-              commercial ambition and residential comfort seamlessly<br />
-              connect to build thriving local communities. We envision a<br />
-              future where finding the perfect workspace or a dream family<br />
-              home is entirely stress-free, driven by cutting-edge market data<br />
-              and a legacy of absolute trust. By continuously elevating the<br />
-              standards of real estate service, we aim to empower our clients<br />
-              to build generational wealth and secure their futures across<br />
-              both personal and professional landscapes. Through our<br />
-              forward-thinking approach, we don't just facilitate transactions;<br />
-              we cultivate the very spaces where businesses prosper and<br />
+              Our vision is to become the premier real estate anchor where
+              commercial ambition and residential comfort seamlessly
+              connect to build thriving local communities. We envision a
+              future where finding the perfect workspace or a dream family
+              home is entirely stress-free, driven by cutting-edge market data
+              and a legacy of absolute trust. By continuously elevating the
+              standards of real estate service, we aim to empower our clients
+              to build generational wealth and secure their futures across
+              both personal and professional landscapes. Through our
+              forward-thinking approach, we don't just facilitate transactions;
+              we cultivate the very spaces where businesses prosper and
               families flourish for generations to come.
             </p>
           </div>

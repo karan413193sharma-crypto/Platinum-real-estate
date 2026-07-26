@@ -59,7 +59,7 @@ export default function AboutSection() {
 
       <style>{`
         .about-section { background: #000; padding: 80px 60px 100px; }
-        .about-container { width: 100%; margin: 0 auto; display: flex; align-items: flex-start; gap: 60px; }
+        .about-container {  margin: 0 auto; display: flex; align-items: flex-start; gap: 60px; }
         .image-column { flex-shrink: 0; width: 45%; display: flex; justify-content: flex-end;  }
         .image-outer { position: relative; width: 700px; height: 780px; }
         .image-shape { position: absolute; top: 0; left: 0; width: 460px; height: 720px; border-radius: 230px 230px 0 0; overflow: hidden; z-index: 2;    left: 55px; /* Move image right */}

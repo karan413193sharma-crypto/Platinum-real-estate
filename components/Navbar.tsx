@@ -4,10 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
+// Normalizes "/about/" -> "/about" so trailing-slash routing doesn't break active-state checks
+const normalize = (path: string) => {
+  if (path.length > 1 && path.endsWith("/")) return path.slice(0, -1);
+  return path;
+};
+
 export default function Navbar() {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = normalize(rawPathname || "/");
   const [menuOpen, setMenuOpen] = useState(false);
   const [propertiesOpen, setPropertiesOpen] = useState(false);
+  const [mobilePropertiesOpen, setMobilePropertiesOpen] = useState(false);
 
   const isPropertiesActive = pathname === "/commercial" || pathname === "/residential";
 
@@ -34,18 +42,18 @@ export default function Navbar() {
         .navbar-logo { display: flex; align-items: center; flex-shrink: 0; }
         .navbar-logo-img-wrap { position: relative; height: 72px; width: 120px; }
         .navbar-menu { display: flex; align-items: center; gap: 36px; }
-        .navbar-menu a {font-family:Montserrat; font-size: 14px; font-weight: 400; color: var(--white); padding: 6px 14px; text-decoration: none; transition: all 0.25s ease; white-space: nowrap; }
+        .navbar-menu a {font-family:Montserrat; font-size: 14px; font-weight: 400; color: var(--white); padding: 6px 14px; text-decoration: none; transition: all 0.25s ease; white-space: nowrap; box-sizing: border-box; }
         .navbar-menu a.active { border: 1px solid var(--red); color: var(--white); }
         .navbar-menu a:hover { color: var(--red); }
         .dropdown { position: relative; }
-        .dropdown-trigger { font-size: 14px; font-weight: 400; color: var(--white); padding: 6px 14px; text-decoration: none; transition: all 0.25s ease; cursor: pointer; background: none; border: none; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+        .dropdown-trigger { font-size: 14px; font-weight: 400; color: var(--white); padding: 6px 14px; text-decoration: none; transition: all 0.25s ease; cursor: pointer; background: none; border: none; display: flex; align-items: center; gap: 6px; white-space: nowrap; box-sizing: border-box; }
         .dropdown-trigger.active { border: 1px solid var(--red); border-radius: 3px; }
         .dropdown-trigger:hover { color: var(--red); }
         .dropdown-trigger svg { transition: transform 0.25s ease; }
         .dropdown-trigger.open svg { transform: rotate(180deg); }
         .dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; background: rgba(26, 48, 65, 0.97); border: 1px solid var(--red); min-width: 160px; flex-direction: column; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease; display: flex; }
         .dropdown-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
-        .dropdown-menu a { font-size: 14px; color: var(--white); padding: 12px 18px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.2s, background 0.2s; white-space: nowrap; }
+        .dropdown-menu a { font-size: 14px; color: var(--white); padding: 12px 18px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.2s, background 0.2s; white-space: nowrap; box-sizing: border-box; }
         .dropdown-menu a:last-child { border-bottom: none; }
         .dropdown-menu a:hover { color: var(--red); background: rgba(255,255,255,0.05); }
         .dropdown-menu a.active { color: var(--red); }
@@ -56,14 +64,65 @@ export default function Navbar() {
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        .mobile-menu { display: none; flex-direction: column; background: rgba(26, 48, 65, 0.97); border: 1px solid var(--red); border-top: none; padding: 16px 20px; gap: 4px; }
+        .mobile-menu { display: none; flex-direction: column; background: rgba(26, 48, 65, 0.97); border: 1px solid var(--red); border-top: none; padding: 16px 20px; gap: 4px; box-sizing: border-box; }
         .mobile-menu.open { display: flex; }
-        .mobile-menu a {  font-family:Montserrat; font-size: 14px; font-weight: 400; color: var(--white); padding: 12px 14px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.2s; }
+        .mobile-menu a {
+          font-family:Montserrat;
+          font-size: 14px;
+          font-weight: 400;
+          color: var(--white);
+          padding: 12px 14px;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          outline: 1px solid transparent;
+          outline-offset: -1px;
+          box-sizing: border-box;
+          width: 100%;
+          transition: color 0.25s ease, outline-color 0.25s ease;
+        }
         .mobile-menu a:last-child { border-bottom: none; }
-        .mobile-menu a.active { color: var(--red); }
-        .mobile-menu a:hover { color: var(--red); }
+        .mobile-menu a.active,
+        .mobile-menu a:hover {
+          color: var(--red);
+          outline-color: var(--red);
+        }
+        .mobile-properties-trigger {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          background: none;
+          outline: 1px solid transparent;
+          outline-offset: -1px;
+          font-family: Montserrat;
+          font-size: 14px;
+          font-weight: 400;
+          color: var(--white);
+          padding: 12px 14px;
+          border: none;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          cursor: pointer;
+          box-sizing: border-box;
+          transition: color 0.25s ease, outline-color 0.25s ease;
+        }
+        .mobile-properties-trigger:hover,
+        .mobile-properties-trigger.active {
+          color: var(--red);
+          outline-color: var(--red);
+        }
+        .mobile-properties-trigger svg { transition: transform 0.25s ease; flex-shrink: 0; }
+        .mobile-properties-trigger.open svg { transform: rotate(180deg); }
+        .mobile-sub {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-height: 0;
+          opacity: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease, opacity 0.25s ease;
+        }
+        .mobile-sub.open { max-height: 200px; opacity: 1; }
         .mobile-sub a { padding-left: 28px !important; font-size: 13px !important; color: rgba(255,255,255,0.75) !important; }
-        .mobile-properties-label { font-size: 14px; font-weight: 400; color: var(--white); padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .mobile-contact-btn { margin-top: 8px; background: var(--red); color: var(--white) !important; font-size: 14px; font-weight: 500; padding: 12px 24px !important; border-radius: 3px; text-align: center; text-decoration: none; display: block; border-bottom: none !important; transition: background 0.2s; }
         .mobile-contact-btn:hover { background: #b5121f; color: var(--white) !important; }
         @media (max-width: 1024px) {
@@ -142,11 +201,22 @@ export default function Navbar() {
         <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
           <Link href="/" className={pathname === "/" ? "active" : ""} onClick={() => setMenuOpen(false)}>Home</Link>
           <Link href="/about" className={pathname === "/about" ? "active" : ""} onClick={() => setMenuOpen(false)}>About Us</Link>
-          <span className="mobile-properties-label">Properties</span>
-          <div className="mobile-sub">
+
+          <button
+            className={`mobile-properties-trigger ${isPropertiesActive ? "active" : ""} ${mobilePropertiesOpen ? "open" : ""}`}
+            onClick={() => setMobilePropertiesOpen(!mobilePropertiesOpen)}
+            aria-expanded={mobilePropertiesOpen}
+          >
+            Properties
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </button>
+          <div className={`mobile-sub ${mobilePropertiesOpen ? "open" : ""}`}>
             <Link href="/commercial" className={pathname === "/commercial" ? "active" : ""} onClick={() => setMenuOpen(false)}>Commercial</Link>
             <Link href="/residential" className={pathname === "/residential" ? "active" : ""} onClick={() => setMenuOpen(false)}>Residential</Link>
           </div>
+
           <Link href="/blog" className={pathname === "/blog" ? "active" : ""} onClick={() => setMenuOpen(false)}>Blog</Link>
           <Link href="/contact" className={pathname === "/contact" ? "active" : ""} onClick={() => setMenuOpen(false)}>Contact Us</Link>
           <Link href="/contact" className="mobile-contact-btn" onClick={() => setMenuOpen(false)}>Contact</Link>

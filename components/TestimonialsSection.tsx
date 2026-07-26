@@ -3,10 +3,10 @@ import Image from "next/image";
 import { useEffect, useMemo, useState, useCallback } from "react";
 
 const customers = [
-  { img: "/images/first.jpg",  name: "Ms. Anjali Verma" },
-  { img: "/images/second.jpg", name: "Mr. Karan Mehta" },
+  { img: "/images/first.jpg",  name: "Mr. Karan Mehta" },
+  { img: "/images/second.jpg", name: " Ms. Anjali Verma" },
   { img: "/images/third.jpg",  name: "Mr. Rajat Sood" },
-  { img: "/images/fourth.jpg", name: "Ms. Priya Nair" },
+  { img: "/images/fourth.jpg", name: "Ms. Priyanshu Nair" },
   { img: "/images/fifth.jpg",  name: "Mr. Devansh Rao" },
 ];
 
