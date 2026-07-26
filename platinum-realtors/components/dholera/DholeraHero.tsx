@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 
 export default function DholeraHero() {
@@ -8,21 +7,10 @@ export default function DholeraHero() {
       <style>{`
         .dh-hero{
     position: relative;
-    height: 760px;      /* was 620 */
+    height: 760px;
     overflow: visible;
     z-index: 0;
 }
-    .dh-hero{
-    overflow:visible;
-    z-index:0;
-}
-    .dh-props{
-    position: relative;
-    margin-top: -140px;
-    z-index: 20;
-    background: white;
-}
-    
 
         .dh-hero-bg{
           position:absolute;
@@ -81,12 +69,11 @@ export default function DholeraHero() {
           margin:0;
         }
 
-        /* allow next section to overlap hero */
-        .dh-hero + *{
-          position:relative;
-          z-index:5;
-          margin-top:-70px;
-        }
+        /* NOTE: overlap into the next section is controlled entirely by that
+           section's own component (e.g. DholeraPlots' .dh-plots margin-top).
+           Do NOT also set margin-top here via a "+ *" sibling selector —
+           having two rules of equal specificity fight over the same property
+           is what caused the inconsistent/no-overlap bug. */
 
         @media(max-width:992px){
 
