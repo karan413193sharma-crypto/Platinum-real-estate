@@ -1,6 +1,8 @@
 import { connectDB } from "@/lib/mongodb";
 import BlogPost from "@/models/BlogPost";
 import { notFound } from "next/navigation";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import InquiryForm from "./InquiryForm";
 
 export const revalidate = 0;
@@ -23,29 +25,42 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <div style={styles.page}>
-      <article style={styles.container}>
-        <span style={styles.category}>{post.category}</span>
-        <h1 style={styles.title}>{post.title}</h1>
-        <div style={styles.accentLine} />
+    <>
+      <Navbar />
+      <div style={styles.page}>
+        <article style={styles.container}>
+          <span style={styles.category}>{post.category}</span>
+          <h1 style={styles.title}>{post.title}</h1>
+          <div style={styles.accentLine} />
 
-        {post.featuredImage && (
-          <div style={styles.imageWrap}>
-            <img src={post.featuredImage} alt={post.title} style={styles.image} />
+          {post.featuredImage && (
+            <div style={styles.imageWrap}>
+              <img src={post.featuredImage} alt={post.title} style={styles.image} />
+            </div>
+          )}
+
+          <div
+            dangerouslySetInnerHTML={{ __html: post.content }}
+            style={styles.content}
+            className="post-body"
+          />
+
+          <div style={styles.inquiryBox}>
+            <h3 style={styles.inquiryTitle}>Interested in this? Talk to us.</h3>
+            <InquiryForm sourcePostSlug={post.slug} />
           </div>
-        )}
-
-        <div
-          dangerouslySetInnerHTML={{ __html: post.content }}
-          style={styles.content}
-        />
-
-        <div style={styles.inquiryBox}>
-          <h3 style={styles.inquiryTitle}>Interested in this? Talk to us.</h3>
-          <InquiryForm sourcePostSlug={post.slug} />
-        </div>
-      </article>
-    </div>
+        </article>
+      </div>
+      <Footer />
+      <style jsx global>{`
+        .post-body p {
+          margin: 0 0 20px 0;
+        }
+        .post-body p:last-child {
+          margin-bottom: 0;
+        }
+      `}</style>
+    </>
   );
 }
 
@@ -53,7 +68,7 @@ const styles: Record<string, React.CSSProperties> = {
   page: {
     background: "linear-gradient(180deg, #0a0a0a 0%, #120606 100%)",
     minHeight: "100vh",
-    padding: "64px 0",
+    padding: "220px 0 64px",
   },
   container: { maxWidth: 760, margin: "0 auto", padding: "0 24px" },
   category: {
