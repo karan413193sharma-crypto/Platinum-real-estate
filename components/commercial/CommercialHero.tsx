@@ -20,7 +20,7 @@ export default function CommercialHero() {
         }
       //  .ch-overlay-red { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(160, 10, 10, 0.53) 0%, rgba(0, 76, 255, 0.86) 28%, rgba(120,10,10,0.18) 48%, transparent 65%); }
         //  .ch-overlay-dark { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to right, rgb(77, 243, 0) 0%, rgba(0,0,0,0.25) 30%, transparent 55%); }
-        .ch-content { position: relative; z-index: 3; margin:0 7%; max-width: 520px;  }
+        .ch-content { position: relative; z-index: 3; margin:3% 7% 0; max-width: 520px;  }
         .ch-pre { font-size: 28px; font-weight: 400; color: #fff; line-height: 1.2; margin: 0 0 2px; }
         .ch-title { font-size: 68px; font-weight: 800; color: #fff; line-height: 1.05; margin: 0 0 2px; letter-spacing: -1px; }
         .ch-post { font-size: 28px; font-weight: 400; color: #fff; line-height: 1.2; margin: 0 0 28px; }
